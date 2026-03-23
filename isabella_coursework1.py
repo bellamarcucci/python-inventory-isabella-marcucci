@@ -19,10 +19,56 @@ def show_menu():
     print("5. Exit")
 
 def add_item():
-    print("Not set yet.")
+    """Adds a new item to the inventory."""
+    global next_id
+ 
+    print("\nEnter product name: ", end="")
+    name = input("> ").strip()
+ 
+    print(f"Enter category ({', '.join(categories)}): ", end="")
+    category = input("> ").strip()
+ 
+    if category not in categories:
+        print("  [!] Category not found.")
+        category = "Office"
+ 
+    # TUPLE multiples values in one variable
+    print("Enter brand name: ", end="")
+    brand_tuple = (input("> ").strip(),)
+    brand = brand_tuple[0]
+ 
+    print("Enter quantity: ", end="")
+    quantity = int(input("> "))
+ 
+    print("Enter price: ", end="")
+    price = float(input("> "))
+ 
+    new_id = next_id
+    next_id += 1
+    product_ids.add(new_id)
+ 
+    inventory[new_id] = {
+        "name": name,
+        "quantity": quantity,
+        "price": price,
+        "category": category,
+        "brand": brand,
+    }
+ 
+    print("\nItem added successfully!")
  
 def view_inventory():
-    print("Not set yet.")
+    if not inventory:
+        print("\n  [!] Inventory is empty.")
+        return
+ 
+    print("\nCurrent Inventory:")
+    print("-" * 40)
+ 
+    for pid, item in inventory.items():
+        print(f"  ID: {pid} | Name: {item['name']} | Brand: {item['brand']} | Category: {item['category']}")
+        print(f"  Price: ${item['price']:.2f} | Quantity: {item['quantity']}")
+        print()
  
 def update_item():
     print("Not set yet.")
