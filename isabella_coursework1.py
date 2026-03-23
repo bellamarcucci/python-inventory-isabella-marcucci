@@ -19,7 +19,6 @@ def show_menu():
     print("5. Exit")
 
 def add_item():
-    """Adds a new item to the inventory."""
     global next_id
  
     print("\nEnter product name: ", end="")
@@ -71,7 +70,30 @@ def view_inventory():
         print()
  
 def update_item():
-    print("Not set yet.")
+    print("\nEnter product name to update: ", end="")
+    name = input("> ").strip()
+ 
+    found_id = None
+    for pid, item in inventory.items():
+        if item["name"].lower() == name.lower():
+            found_id = pid
+            break
+ 
+    if found_id is None:
+        print(f"  [!] Product '{name}' not found.")
+        return
+ 
+    print("Enter new quantity: ", end="")
+    qty_input = input("> ").strip()
+    if qty_input:
+        inventory[found_id]["quantity"] = int(qty_input)
+ 
+    print("Enter new price: ", end="")
+    price_input = input("> ").strip()
+    if price_input:
+        inventory[found_id]["price"] = float(price_input)
+ 
+    print("\nInventory updated successfully!")
  
 def remove_item():
     print("Not set yet.")
