@@ -1,0 +1,1 @@
+Product,101,Banana,7.99,20,Food,FruitsCA,N/A
