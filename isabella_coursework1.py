@@ -96,7 +96,23 @@ def update_item():
     print("\nInventory updated successfully!")
  
 def remove_item():
-    print("Not set yet.")
+    print("\nEnter product name to remove: ", end="")
+    name = input("> ").strip()
+ 
+    target_id = None
+    for pid, item in inventory.items():
+        if item["name"].lower() == name.lower():
+            target_id = pid
+            break
+ 
+    if target_id is None:
+        print(f"  [!] Product '{name}' not found.")
+        return
+ 
+    del inventory[target_id]
+    product_ids.discard(target_id)
+    print(f"\nProduct '{name}' removed successfully!")
+
  
 def main():
     print("Welcome to my Inventory Management System!")
